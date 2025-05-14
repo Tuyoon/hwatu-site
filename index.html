@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hwatu — Korean Card Game</title>
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --text: #2c3e50;
+      --accent: #ff4757;
+      --btn: #1e90ff;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      background-color: var(--btn);
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0d7adb;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: var(--btn);
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .lang-switch {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .lang-switch button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      color: var(--text);
+      margin: 0 0.5rem;
+      cursor: pointer;
+    }
+
+    .lang-switch button:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-switch">
+    <button onclick="setLang('ru')">🇷🇺 RU</button>
+    <button onclick="setLang('en')">🇺🇸 EN</button>
+  </div>
+
+  <div class="container">
+    <h1 id="title">Hwatu</h1>
+    <p id="description">
+      Classic Korean card game.
+    </p>
+    <a href="https://apps.apple.com/app/id6563145829" class="appstore-button" target="_blank" rel="noopener">
+	  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="40">
+	</a>
+
+    <footer>
+	  <a href="privacy.html" id="privacyLink">Privacy Policy</a>
+	  <a href="terms.html" id="termsLink">EULA</a>
+	  <a href="mailto:rtat.store@gmail.com" id="contactLink">Contact</a>
+	</footer>
+
+  </div>
+
+  <script>
+    const translations = {
+		en: {
+		  title: "Hwatu",
+		  description: "Classic Korean card game.",
+		  download: "Download on the App Store",
+		  privacyLink: "Privacy Policy",
+		  termsLink: "EULA",
+		  contactLink: "Contact"
+		},
+		ru: {
+		  title: "Хато",
+		  description: "Классическая корейская карточная игра.",
+		  download: "Скачать в App Store",
+		  privacyLink: "Политика конфиденциальности",
+		  termsLink: "Лицензионное соглашение",
+		  contactLink: "Контакты"
+		}
+	  };
+	
+	  function setLang(lang) {
+		const t = translations[lang] || translations["en"];
+		document.getElementById("title").textContent = t.title;
+		document.getElementById("description").textContent = t.description;
+		document.getElementById("download").textContent = t.download;
+		document.getElementById("privacyLink").textContent = t.privacyLink;
+		document.getElementById("termsLink").textContent = t.termsLink;
+		document.getElementById("contactLink").textContent = t.contactLink;
+	
+		// Сохраняем язык
+		localStorage.setItem("lang", lang);
+	  }
+	
+	  // Получаем язык из localStorage или определяем автоматически
+	  const savedLang = localStorage.getItem("lang");
+	  const browserLang = navigator.language.startsWith("ru") ? "ru" : "en";
+	  const currentLang = savedLang || browserLang;
+	
+	  setLang(currentLang);
+  </script>
+</body>
+</html>
